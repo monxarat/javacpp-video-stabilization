@@ -12,14 +12,12 @@ video cameras, and telescopes.
 There are various methods for image or video stabilization, and this sample focuses on the
 most extended families of methods:
 
-# Mechanical stabilization systems
-These systems use a mechanical system on the
+**Mechanical stabilization systems**: These systems use a mechanical system on the
 camera lens so that when the camera is moved, motion is detected by accelerometers
 and gyroscopes, and the system generates a movement on the lens. These systems
 will not be considered here.
 
-# Digital stabilization systems
-These are normally used in video and they act directly
+**Digital stabilization systems**: These are normally used in video and they act directly
 on the image obtained from the camera. In these systems, the surface of the stabilized
 image is slightly smaller than the source image’s surface. When the camera is moved,
 the captured image is moved to compensate this movement. Although these
@@ -28,7 +26,7 @@ movement sensor, resolution and image clarity are sacrificed.
 
 Video-stabilization algorithms usually encompass the following steps:
 
-Source Video Frames -> Motion Estimator -> Matrices of Motion -> Transformation of Frames -> Stabilized Video Frames -> with somes Detects -> Video Completion, Debluring,etc. -> Stabilized Video.
+**Source Video Frames** -> Motion Estimator -> **Matrices of Motion** -> Transformation of Frames -> **Stabilized Video Frames with some Detects** -> Video Completion, Debluring,etc. -> **Stabilized Video.**
 
 You can find more detailed information about the RANSAC method at
 https://en.wikipedia.org/wiki/Random_sample_consensus
