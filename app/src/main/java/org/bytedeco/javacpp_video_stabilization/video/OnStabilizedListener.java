@@ -27,42 +27,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.bytedeco.javacpp_video_stabilization;
+package org.bytedeco.javacpp_video_stabilization.video;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import org.bytedeco.javacpp.opencv_core;
-import org.bytedeco.javacpp_video_stabilization.video.VideoStabilization;
-import org.bytedeco.javacv.FFmpegFrameGrabber;
-import org.bytedeco.javacv.FrameGrabber;
 
 /**
  * Created by chinhnq on 7/23/18.
  *
- * Example Video Stabilization
+ * Called when processing video stabilized.
  */
-public class MainActivity extends AppCompatActivity {
+public interface OnStabilizedListener {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    /**
+     * Called when start video stab.
+     */
+    void onStart();
 
-        String videoPath = "<Video Source path>";
-        FFmpegFrameGrabber frameGrabber = new FFmpegFrameGrabber(videoPath);
-        try {
-            frameGrabber.start();
+    /**
+     * Called when processing video, create video from stab frames.
+     * @param indexFrame index frame of the video.
+     * @param frame frame data.
+     */
+    void onProcess(int indexFrame, opencv_core.Mat frame);
 
-            VideoStabilization videoStab = new VideoStabilization(
-                    videoPath,
-                    "<Destination video path>");
-            videoStab.setFrameGrabber(frameGrabber);
-            videoStab.setSizeImage(new opencv_core.Size(720, 1280));
-
-            videoStab.stabilizer();
-        } catch (FrameGrabber.Exception e) {
-            e.printStackTrace();
-        }
-    }
+    /**
+     * Called has processing has finished.
+     */
+    void onFinished();
 }
