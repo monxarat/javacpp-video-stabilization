@@ -37,7 +37,7 @@ import org.bytedeco.javacpp.opencv_videostab.RansacParams;
  *
  * Create all config for video stabilization.
  */
-public class VizoVideoStabConfig {
+public class VideoStabConfig {
 
     public static final float MIN_INLIER_RATIO = 0.1f;
     private float minInLierRatio = MIN_INLIER_RATIO;
@@ -85,7 +85,7 @@ public class VizoVideoStabConfig {
 
     private BorderTypes borderTypes = BorderTypes.BORDER_REPLICATE;
 
-    public VizoVideoStabConfig() {
+    public VideoStabConfig() {
         ransacParams = new RansacParams();
     }
 

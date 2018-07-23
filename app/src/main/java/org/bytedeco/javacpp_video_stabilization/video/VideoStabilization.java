@@ -93,14 +93,14 @@ public class VideoStabilization {
     /** Rotate video if you want, by default will be rotate 90 degree*/
     private int rotateVideo;
 
-    private VizoVideoStabConfig mVizoVideoStabConfig;
+    private VideoStabConfig mVideoStabConfig;
 
     private OnStabilizedListener onStabilizedListener;
 
     public VideoStabilization(String sourcePath, String destPath) {
         this.sourceVideo = sourcePath;
         this.destVideo = destPath;
-        mVizoVideoStabConfig = new VizoVideoStabConfig();
+        mVideoStabConfig = new VideoStabConfig();
     }
 
     /**
@@ -123,14 +123,14 @@ public class VideoStabilization {
 
             // 2 prepare the motion estimator
             // first prepare the motion the estimation builder RANSAC L2;
-            MotionEstimatorRansacL2 est = new MotionEstimatorRansacL2(mVizoVideoStabConfig.getMotionMode());
+            MotionEstimatorRansacL2 est = new MotionEstimatorRansacL2(mVideoStabConfig.getMotionMode());
 
             // set ransac params for motion estimator
             RansacParams ransacParams = est.ransacParams();
-            mVizoVideoStabConfig.setRansacParams(ransacParams);
+            mVideoStabConfig.setRansacParams(ransacParams);
 
             est.setRansacParams(ransacParams);
-            est.setMinInlierRatio(mVizoVideoStabConfig.getMinInLierRatio());
+            est.setMinInlierRatio(mVideoStabConfig.getMinInLierRatio());
 
             // seconds, create a feature detector
             GFTTDetector feature = GFTTDetector.create();
@@ -149,10 +149,10 @@ public class VideoStabilization {
             // seconds, setup parameter
             stabilizer.setFrameSource(mFrameSource);
             stabilizer.setMotionEstimator(motionEstBuilder);
-            stabilizer.setRadius(mVizoVideoStabConfig.getStabRadius());
-            stabilizer.setTrimRatio(mVizoVideoStabConfig.getStabTrimRatio());
-            stabilizer.setCorrectionForInclusion(mVizoVideoStabConfig.isInclusion());
-            stabilizer.setBorderMode(mVizoVideoStabConfig.getBorderTypes().value());
+            stabilizer.setRadius(mVideoStabConfig.getStabRadius());
+            stabilizer.setTrimRatio(mVideoStabConfig.getStabTrimRatio());
+            stabilizer.setCorrectionForInclusion(mVideoStabConfig.isInclusion());
+            stabilizer.setBorderMode(mVideoStabConfig.getBorderTypes().value());
             mFrameSource = stabilizer.asIFrameSource();
             mFrameSource.reset();
 
@@ -206,7 +206,7 @@ public class VideoStabilization {
                                         ((byte) 'J'),
                                         ((byte) 'P'),
                                         ((byte) 'G')),
-                                VizoVideoStabConfig.OUT_FPS,
+                                VideoStabConfig.OUT_FPS,
                                 new opencv_core.Size(stabilizedFrame.rows(), stabilizedFrame.cols()));
 
                     }
